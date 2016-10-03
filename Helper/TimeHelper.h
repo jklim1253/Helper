@@ -1,5 +1,7 @@
 #pragma once
-#include <jklim.h>
+
+#include "Helper_define.h"
+#include "singleton.hpp"
 
 class _TimeHelper : public singleton<_TimeHelper> {
 	friend class singleton<_TimeHelper>;

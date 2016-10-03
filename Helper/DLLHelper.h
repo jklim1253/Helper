@@ -1,5 +1,7 @@
 #pragma once
-#include <jklim.h>
+
+#include "Helper_define.h"
+#include "singleton.hpp"
 #include <list>
 
 class _DLLHelper : public singleton<_DLLHelper> {

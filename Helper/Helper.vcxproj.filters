@@ -1,0 +1,78 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="소스 파일">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="헤더 파일">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="리소스 파일">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav</Extensions>
+    </Filter>
+    <Filter Include="INIHelper">
+      <UniqueIdentifier>{3979f7ad-0b36-495f-81d4-155601281035}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Common">
+      <UniqueIdentifier>{32f03d40-4f0f-419a-a9d4-e2691b77344b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="TimeHelper">
+      <UniqueIdentifier>{ce094e7d-48b0-4984-9811-d32fc23da8f5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DLLHelper">
+      <UniqueIdentifier>{b5141c62-6323-4d69-ba75-a09cdb844b70}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ThreadHelper">
+      <UniqueIdentifier>{2276420f-54bb-4784-aef3-acbc2765505a}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Helper.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="INIHelper.cpp">
+      <Filter>INIHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="DLLHelper.cpp">
+      <Filter>DLLHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="TimeHelper.cpp">
+      <Filter>TimeHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="ThreadHelper.cpp">
+      <Filter>ThreadHelper</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Helper.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="Helper_define.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="INIHelper.hpp">
+      <Filter>INIHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="singleton.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="DLLHelper.h">
+      <Filter>DLLHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="TimeHelper.h">
+      <Filter>TimeHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="ThreadHelper.h">
+      <Filter>ThreadHelper</Filter>
+    </ClInclude>
+    <ClInclude Include="AutoUnlocker.hpp">
+      <Filter>Common</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="helper_copy_to_jklim.bat" />
+  </ItemGroup>
+</Project>

@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include "DLLHelper.h"
 #include "TimeHelper.h"
 
@@ -24,18 +23,18 @@ std::list<std::tstring> _DLLHelper::EnumDll() {
 	std::tstring strExePath;
 
 	DWORD dwBufferSize = 16;
-	LPTSTR strFilePath = NULL;
+	LPTSTR strFilePath = 0;
 	DWORD dwRet = 0;
 
 	try {
 		do {
 			if (strFilePath) {
 				delete[] strFilePath;
-				strFilePath = NULL;
+				strFilePath = 0;
 			}
 			dwBufferSize *= 2;
 			strFilePath = new TCHAR[dwBufferSize];
-			dwRet = ::GetModuleFileName(NULL, strFilePath, dwBufferSize);
+			dwRet = ::GetModuleFileName(0, strFilePath, dwBufferSize);
 			if (dwRet == 0) {
 				DWORD dwError = ::GetLastError();
 				throw std::exception("GetModuleFileName failed.", dwError);
@@ -44,30 +43,31 @@ std::list<std::tstring> _DLLHelper::EnumDll() {
 
 		strExePath = strFilePath;
 		delete[] strFilePath;
+		strFilePath = 0;
 
 		strExePath = strExePath.substr(0, strExePath.find_last_of(_T("\\")));
 	}
 	catch (std::exception& e) {
+		if (strFilePath) {
+			delete[] strFilePath;
+			strFilePath = 0;
+		}
 		Log.Format(_T("%s %s"), TimeHelper.now(), e.what());
 	}
 
 	std::tstring strDll(strExePath + _T("\\*.dll"));
 
-	CFileFind finder;
-	if (!finder.FindFile(strDll.c_str())) {
+	WIN32_FIND_DATA ffd;
+	HANDLE handle = ::FindFirstFile(strDll.c_str(), &ffd);
+	if (handle == INVALID_HANDLE_VALUE) {
 		DWORD dwError = ::GetLastError();
-		Log.Format(_T("%s CFileFind::FindFile [%d]"), TimeHelper.now(), dwError);
-		finder.Close();
 		return dlllist;
 	}
 
-	BOOL NoMore = FALSE;
-	do {
-		NoMore = finder.FindNextFile();
-		dlllist.push_back((LPCTSTR)finder.GetFilePath());
-	} while (NoMore);
-
-	finder.Close();
+	while (::FindNextFile(handle, &ffd)) {
+		dlllist.push_back(ffd.cFileName);
+	}
+	::FindClose(handle);
 
 	return dlllist;
 }
