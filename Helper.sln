@@ -1,0 +1,29 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Helper", "Helper\Helper.vcproj", "{D50C7355-9E31-413D-8E50-0DCFA8CB65E8}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HelperTester", "HelperTester\HelperTester.vcproj", "{DF68DB56-A463-4B06-9CCF-DEB20706BC1F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{D50C7355-9E31-413D-8E50-0DCFA8CB65E8} = {D50C7355-9E31-413D-8E50-0DCFA8CB65E8}
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Win32 = Debug|Win32
+		Release|Win32 = Release|Win32
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D50C7355-9E31-413D-8E50-0DCFA8CB65E8}.Debug|Win32.ActiveCfg = Debug|Win32
+		{D50C7355-9E31-413D-8E50-0DCFA8CB65E8}.Debug|Win32.Build.0 = Debug|Win32
+		{D50C7355-9E31-413D-8E50-0DCFA8CB65E8}.Release|Win32.ActiveCfg = Release|Win32
+		{D50C7355-9E31-413D-8E50-0DCFA8CB65E8}.Release|Win32.Build.0 = Release|Win32
+		{DF68DB56-A463-4B06-9CCF-DEB20706BC1F}.Debug|Win32.ActiveCfg = Debug|Win32
+		{DF68DB56-A463-4B06-9CCF-DEB20706BC1F}.Debug|Win32.Build.0 = Debug|Win32
+		{DF68DB56-A463-4B06-9CCF-DEB20706BC1F}.Release|Win32.ActiveCfg = Release|Win32
+		{DF68DB56-A463-4B06-9CCF-DEB20706BC1F}.Release|Win32.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
