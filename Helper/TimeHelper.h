@@ -11,6 +11,7 @@ private :
 
 public :
 	std::tstring now() const;
+	std::tstring time(SYSTEMTIME st) const;
 };
 
 #define TimeHelper (_TimeHelper::Reference())

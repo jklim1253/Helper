@@ -96,6 +96,7 @@
     <ClCompile Include="DLLHelper.cpp" />
     <ClCompile Include="Helper.cpp" />
     <ClCompile Include="INIHelper.cpp" />
+    <ClCompile Include="LogHelper.cpp" />
     <ClCompile Include="ThreadHelper.cpp" />
     <ClCompile Include="TimeHelper.cpp" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Helper_define.h" />
     <ClInclude Include="INIHelper.hpp" />
+    <ClInclude Include="LogHelper.h" />
     <ClInclude Include="singleton.hpp" />
     <ClInclude Include="ThreadHelper.h" />
     <ClInclude Include="TimeHelper.h" />

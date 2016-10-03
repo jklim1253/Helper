@@ -28,6 +28,9 @@
     <Filter Include="ThreadHelper">
       <UniqueIdentifier>{2276420f-54bb-4784-aef3-acbc2765505a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="LogHelper">
+      <UniqueIdentifier>{2d0d576e-93b9-453d-9df9-e22462075eb3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Helper.cpp">
@@ -44,6 +47,9 @@
     </ClCompile>
     <ClCompile Include="ThreadHelper.cpp">
       <Filter>ThreadHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="LogHelper.cpp">
+      <Filter>LogHelper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -70,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="AutoUnlocker.hpp">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="LogHelper.h">
+      <Filter>LogHelper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
