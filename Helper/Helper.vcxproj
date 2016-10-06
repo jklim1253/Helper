@@ -103,6 +103,7 @@
   <ItemGroup>
     <ClInclude Include="AutoUnlocker.hpp" />
     <ClInclude Include="DLLHelper.h" />
+    <ClInclude Include="GetArraySize.hpp" />
     <ClInclude Include="Helper.h" />
     <ClInclude Include="Helper_define.h" />
     <ClInclude Include="INIHelper.hpp" />

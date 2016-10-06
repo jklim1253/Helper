@@ -6,6 +6,7 @@
 // pattern header files.
 #include "singleton.hpp"
 #include "AutoUnlocker.hpp"
+#include "GetArraySize.hpp"
 
 // helper header files.
 #include "INIHelper.hpp"

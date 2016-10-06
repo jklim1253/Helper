@@ -10,6 +10,7 @@ copy /y .\Helper_define.h %jklim%\include\
 : pattern header
 copy /y .\singleton.hpp %jklim%\include\
 copy /y .\AutoUnlocker.hpp %jklim%\include\
+copy /y .\GetArraySize.hpp %jklim%\include\
 : helper header
 copy /y .\INIHelper.hpp %jklim%\include\
 copy /y .\DLLHelper.h %jklim%\include\
