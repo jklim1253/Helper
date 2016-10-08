@@ -22,6 +22,7 @@ public :
 	void wait_thread() {
 		::WaitForSingleObject(handle, INFINITE);
 	}
+private :
 	static int proc(ThreadHelperImpl* pThis) {
 		if (pThis->getInstruction()) {
 			return pThis->getInstruction()->execute();

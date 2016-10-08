@@ -1,12 +1,12 @@
 #pragma once
-#include <Windows.h>
+#include "Helper_define.h"
 
-struct Instruction {
+struct HELPER_API Instruction {
 	virtual int execute() = 0;
 };
 
 class ThreadHelperImpl;
-class ThreadHelper {
+class HELPER_API ThreadHelper {
 public :
 	ThreadHelper();
 	ThreadHelper(Instruction* ins);

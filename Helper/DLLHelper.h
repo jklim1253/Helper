@@ -4,7 +4,7 @@
 #include "singleton.hpp"
 #include <list>
 
-class _DLLHelper : public singleton<_DLLHelper> {
+class HELPER_API _DLLHelper : public singleton<_DLLHelper> {
 	friend class singleton<_DLLHelper>;
 private :
 	_DLLHelper();

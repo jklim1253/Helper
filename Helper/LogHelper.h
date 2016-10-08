@@ -3,7 +3,7 @@
 #include "Helper_define.h"
 
 class LogHelperImpl;
-class LogHelper {
+class HELPER_API LogHelper {
 public :
 	LogHelper();
 	LogHelper(const std::tstring& path);
