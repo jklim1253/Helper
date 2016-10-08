@@ -11,13 +11,14 @@ class HELPER_API ThreadHelper {
 public :
 	ThreadHelper();
 	ThreadHelper(Instruction* ins);
+    ~ThreadHelper();
 
 	ThreadHelper& run();
 	ThreadHelper& run(Instruction* ins);
 
 	ThreadHelper& stop(DWORD exitcode = 1);
 
-	ThreadHelper& wait();
+	ThreadHelper& wait(DWORD dwWait = INFINITE);
 private :
 	ThreadHelperImpl* impl;
 };

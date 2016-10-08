@@ -1,6 +1,8 @@
 #include "ThreadHelper.h"
 #include <Windows.h>
 
+const DWORD FORCE_EXIT = -1;
+
 Instruction::~Instruction() {}
 
 class ThreadHelperImpl {
@@ -26,12 +28,15 @@ public :
 	}
 	void stop_thread(DWORD exitcode) {
 		::TerminateThread(handle, exitcode);
+        ::CloseHandle(handle);
 	}
-	void wait_thread() {
-		::WaitForSingleObject(handle, INFINITE);
+	void wait_thread(DWORD dwWaitMilliSecond = INFINITE) {
+		::WaitForSingleObject(handle, dwWaitMilliSecond);
+        stop_thread(0);
 	}
     void releaseInstruction() {
         if (instruction) {
+            stop_thread(FORCE_EXIT);
             delete instruction;
             instruction = 0;
         }
@@ -57,6 +62,12 @@ ThreadHelper::ThreadHelper(Instruction* ins)
 : ThreadHelper() {
 	impl->setInstruction(ins);
 }
+ThreadHelper::~ThreadHelper() {
+    if (impl) {
+        delete impl;
+        impl = 0;
+    }
+}
 
 ThreadHelper& ThreadHelper::run() {
 	impl->run_thread();
@@ -73,8 +84,8 @@ ThreadHelper& ThreadHelper::stop(DWORD exitcode/*=1*/) {
 
     return *this;
 }
-ThreadHelper& ThreadHelper::wait() {
-	impl->wait_thread();
+ThreadHelper& ThreadHelper::wait(DWORD dwWait/*=INFINITE*/) {
+	impl->wait_thread(dwWait);
 
     return *this;
 }
