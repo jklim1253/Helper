@@ -2,6 +2,7 @@
 #include "Helper_define.h"
 
 struct HELPER_API Instruction {
+    virtual ~Instruction();
 	virtual int execute() = 0;
 };
 
@@ -11,12 +12,12 @@ public :
 	ThreadHelper();
 	ThreadHelper(Instruction* ins);
 
-	void run();
-	void run(Instruction* ins);
+	ThreadHelper& run();
+	ThreadHelper& run(Instruction* ins);
 
-	void stop(DWORD exitcode = 1);
+	ThreadHelper& stop(DWORD exitcode = 1);
 
-	void wait();
+	ThreadHelper& wait();
 private :
 	ThreadHelperImpl* impl;
 };

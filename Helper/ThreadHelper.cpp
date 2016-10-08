@@ -1,12 +1,20 @@
 #include "ThreadHelper.h"
 #include <Windows.h>
 
+Instruction::~Instruction() {}
+
 class ThreadHelperImpl {
 public :
+    ThreadHelperImpl() : instruction(0), handle(0) {}
+    ~ThreadHelperImpl() {
+        releaseInstruction();
+    }
 	Instruction* getInstruction() const {
 		return instruction;
 	}
 	void setInstruction(Instruction* ins) {
+        releaseInstruction();
+
 		instruction = ins;
 	}
 	HANDLE& Handle() {
@@ -22,12 +30,19 @@ public :
 	void wait_thread() {
 		::WaitForSingleObject(handle, INFINITE);
 	}
+    void releaseInstruction() {
+        if (instruction) {
+            delete instruction;
+            instruction = 0;
+        }
+    }
 private :
 	static int proc(ThreadHelperImpl* pThis) {
 		if (pThis->getInstruction()) {
 			return pThis->getInstruction()->execute();
 		}
 
+        pThis->releaseInstruction();
 		return 0;
 	}
 private :
@@ -43,17 +58,23 @@ ThreadHelper::ThreadHelper(Instruction* ins)
 	impl->setInstruction(ins);
 }
 
-void ThreadHelper::run() {
+ThreadHelper& ThreadHelper::run() {
 	impl->run_thread();
+
+    return *this;
 }
-void ThreadHelper::run(Instruction* ins) {
+ThreadHelper& ThreadHelper::run(Instruction* ins) {
 	impl->setInstruction(ins);
 
-	run();
+	return run();
 }
-void ThreadHelper::stop(DWORD exitcode/*=1*/) {
+ThreadHelper& ThreadHelper::stop(DWORD exitcode/*=1*/) {
 	impl->stop_thread(exitcode);
+
+    return *this;
 }
-void ThreadHelper::wait() {
+ThreadHelper& ThreadHelper::wait() {
 	impl->wait_thread();
+
+    return *this;
 }
