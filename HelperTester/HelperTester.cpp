@@ -17,6 +17,7 @@ BEGIN_MESSAGE_MAP(CHelperTesterApp, CWinAppEx)
 	ON_COMMAND(ID_HELP, &CWinApp::OnHelp)
 END_MESSAGE_MAP()
 
+LogHelper Logger(_T("test.log"));
 
 // CHelperTesterApp 생성
 
@@ -24,6 +25,7 @@ CHelperTesterApp::CHelperTesterApp()
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 	// InitInstance에 모든 중요한 초기화 작업을 배치합니다.
+    Logger.AddMessage(_T("MainApp created."));
 }
 
 
@@ -59,8 +61,11 @@ BOOL CHelperTesterApp::InitInstance()
 	// 적절한 내용으로 수정해야 합니다.
 	SetRegistryKey(_T("로컬 응용 프로그램 마법사에서 생성된 응용 프로그램"));
 
+    Logger.AddMessage(_T("config file loading."));
     Config.load();
+    Logger.AddMessage(_T("config file loaded."));
 
+    Logger.AddMessage(_T("MainDialog creating."));
 	CHelperTesterDlg dlg;
 	m_pMainWnd = &dlg;
 	INT_PTR nResponse = dlg.DoModal();
@@ -75,7 +80,9 @@ BOOL CHelperTesterApp::InitInstance()
 		//  코드를 배치합니다.
 	}
 
+    Logger.AddMessage(_T("config file saving."));
     Config.save();
+    Logger.AddMessage(_T("config file saved."));
 
 	// 대화 상자가 닫혔으므로 응용 프로그램의 메시지 펌프를 시작하지 않고  응용 프로그램을 끝낼 수 있도록 FALSE를
 	// 반환합니다.

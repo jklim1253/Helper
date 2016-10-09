@@ -9,12 +9,14 @@ class ThreadHelperImpl {
 public :
     ThreadHelperImpl() : instruction(0), handle(0) {}
     ~ThreadHelperImpl() {
+        stop_thread(FORCE_EXIT);
         releaseInstruction();
     }
 	Instruction* getInstruction() const {
 		return instruction;
 	}
 	void setInstruction(Instruction* ins) {
+        stop_thread(FORCE_EXIT);
         releaseInstruction();
 
 		instruction = ins;
@@ -27,8 +29,11 @@ public :
 		handle = ::CreateThread(0, 0, (LPTHREAD_START_ROUTINE)&ThreadHelperImpl::proc, this, 0, &addr);
 	}
 	void stop_thread(DWORD exitcode) {
-		::TerminateThread(handle, exitcode);
-        ::CloseHandle(handle);
+        if (handle) {
+            ::TerminateThread(handle, exitcode);
+            ::CloseHandle(handle);
+            handle = 0;
+        }
 	}
 	void wait_thread(DWORD dwWaitMilliSecond = INFINITE) {
 		::WaitForSingleObject(handle, dwWaitMilliSecond);
@@ -36,7 +41,6 @@ public :
 	}
     void releaseInstruction() {
         if (instruction) {
-            stop_thread(FORCE_EXIT);
             delete instruction;
             instruction = 0;
         }

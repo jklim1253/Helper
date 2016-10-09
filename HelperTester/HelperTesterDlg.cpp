@@ -20,6 +20,7 @@ CHelperTesterDlg::CHelperTesterDlg(CWnd* pParent /*=NULL*/)
 	: CDialog(CHelperTesterDlg::IDD, pParent)
 {
 	m_hIcon = AfxGetApp()->LoadIcon(IDR_MAINFRAME);
+    Logger.AddMessage(_T("MainDialog created."));
 }
 
 void CHelperTesterDlg::DoDataExchange(CDataExchange* pDX)
@@ -59,6 +60,7 @@ BOOL CHelperTesterDlg::OnInitDialog()
     int y = (::GetSystemMetrics(SM_CYSCREEN) - height)/2;
     this->MoveWindow(x, y, width, height);
 
+    Logger.AddMessage(_T("MainDialog initialized."));
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
 }
 
@@ -146,4 +148,6 @@ void CHelperTesterDlg::UpdateLayout(void)
 	m_ctrlSearchList.MoveWindow(nMargin, rcLocal.bottom + nMargin, rc.Width() - 2*nMargin, rc.Height() - 3*nMargin - nHeight);
 	m_ctrlSearchList.GetWindowRect(&rcLocal);
 	this->ScreenToClient(&rcLocal);
+
+//    Logger.AddMessage(_T("MainDialog Layout Updated."));
 }

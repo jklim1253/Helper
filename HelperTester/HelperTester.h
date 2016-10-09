@@ -30,3 +30,5 @@ public:
 };
 
 extern CHelperTesterApp theApp;
+
+extern LogHelper Logger;

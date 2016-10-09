@@ -13,3 +13,4 @@
 #include "DLLHelper.h"
 #include "ThreadHelper.h"
 #include "TimeHelper.h"
+#include "LogHelper.h"
