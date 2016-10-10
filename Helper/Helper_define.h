@@ -11,6 +11,7 @@
 #include <string>
 #include <sstream>
 #include <fstream>
+#include <list>
 
 #if defined(UNICODE) || defined(_UNICODE)
 #define tstring wstring

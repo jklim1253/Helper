@@ -31,6 +31,9 @@
     <Filter Include="LogHelper">
       <UniqueIdentifier>{2d0d576e-93b9-453d-9df9-e22462075eb3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="NetworkHelper">
+      <UniqueIdentifier>{b25ca1b9-7895-4a26-a640-9cdfd2345081}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Helper.cpp">
@@ -50,6 +53,9 @@
     </ClCompile>
     <ClCompile Include="LogHelper.cpp">
       <Filter>LogHelper</Filter>
+    </ClCompile>
+    <ClCompile Include="NetworkHelper.cpp">
+      <Filter>NetworkHelper</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -82,6 +88,9 @@
     </ClInclude>
     <ClInclude Include="GetArraySize.hpp">
       <Filter>Common</Filter>
+    </ClInclude>
+    <ClInclude Include="NetworkHelper.h">
+      <Filter>NetworkHelper</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
