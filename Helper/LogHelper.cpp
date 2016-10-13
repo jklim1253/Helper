@@ -50,11 +50,10 @@ public :
 		return filename_;
 	}
 	void push(const std::tstring& msg) {
-		AutoUnlocker<CRITICAL_SECTION> au(cs_);
-
 		SYSTEMTIME now;
 		::GetLocalTime(&now);
 
+		AutoUnlocker<CRITICAL_SECTION> au(cs_);
 		depot.push_back(std::make_pair(now, msg));
 	}
 	std::tstring pop() {
