@@ -19,6 +19,8 @@ public :
 	ThreadHelper& stop(DWORD exitcode = 1);
 
 	ThreadHelper& wait(DWORD dwWait = INFINITE);
+
+    ThreadHelper& setcompletionhandler(Instruction* handler);
 private :
 	ThreadHelperImpl* impl;
 };

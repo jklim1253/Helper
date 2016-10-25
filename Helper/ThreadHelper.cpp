@@ -7,7 +7,11 @@ Instruction::~Instruction() {}
 
 class ThreadHelperImpl {
 public :
-    ThreadHelperImpl() : instruction(0), handle(0) {}
+    ThreadHelperImpl()
+        : instruction(0)
+        , handle(0)
+        , exit_handler(0)
+    {}
     ~ThreadHelperImpl() {
         stop_thread(FORCE_EXIT);
         releaseInstruction();
@@ -15,6 +19,9 @@ public :
 	Instruction* getInstruction() const {
 		return instruction;
 	}
+    Instruction* getExithandler() const {
+        return exit_handler;
+    }
 	void setInstruction(Instruction* ins) {
         stop_thread(FORCE_EXIT);
         releaseInstruction();
@@ -44,18 +51,30 @@ public :
             delete instruction;
             instruction = 0;
         }
+        if (exit_handler) {
+            delete exit_handler;
+            exit_handler = 0;
+        }
+    }
+    void occur_thread_exit(Instruction* handler) {
+
     }
 private :
 	static int proc(ThreadHelperImpl* pThis) {
 		if (pThis->getInstruction()) {
-			return pThis->getInstruction()->execute();
+			pThis->getInstruction()->execute();
 		}
+
+        if (pThis->getExithandler()) {
+            pThis->getExithandler()->execute();
+        }
 
         pThis->releaseInstruction();
 		return 0;
 	}
 private :
 	Instruction* instruction;
+    Instruction* exit_handler;
 	HANDLE handle;
 };
 
@@ -90,6 +109,11 @@ ThreadHelper& ThreadHelper::stop(DWORD exitcode/*=1*/) {
 }
 ThreadHelper& ThreadHelper::wait(DWORD dwWait/*=INFINITE*/) {
 	impl->wait_thread(dwWait);
+
+    return *this;
+}
+ThreadHelper& ThreadHelper::setcompletionhandler(Instruction* handler) {
+    impl->occur_thread_exit(handler);
 
     return *this;
 }
