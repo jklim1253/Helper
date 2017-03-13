@@ -4,6 +4,7 @@
 struct CONFIG {
     int width;
     int height;
+    int showcmd;
 };
 
 class ConfigImpl {
@@ -21,6 +22,7 @@ public :
 
                 config.width = ini.GetValue(_T("width"), cx);
                 config.height = ini.GetValue(_T("height"), cy);
+                config.showcmd = ini.GetValue(_T("showcmd"), SW_SHOW);
             }
         }
 
@@ -34,6 +36,7 @@ public :
             {
                 ini.SetValue(_T("width"), config.width);
                 ini.SetValue(_T("height"), config.height);
+                ini.SetValue(_T("showcmd"), config.showcmd);
             }
         }
 
@@ -45,6 +48,9 @@ public :
         }
         else if (key == std::tstring(_T("height"))) {
             return config.height;
+        }
+        else if (key == std::tstring(_T("showcmd"))) {
+            return config.showcmd;
         }
 
         static int err = 0;
@@ -60,6 +66,7 @@ _Config::_Config()
 : impl(new ConfigImpl) {
 }
 _Config::~_Config() {
+    save();
     if (impl) {
         delete impl;
         impl = 0;

@@ -37,6 +37,7 @@ BEGIN_MESSAGE_MAP(CHelperTesterDlg, CDialog)
 	//}}AFX_MSG_MAP
 	ON_WM_GETMINMAXINFO()
 	ON_WM_SIZE()
+    ON_WM_CLOSE()
 END_MESSAGE_MAP()
 
 
@@ -58,7 +59,15 @@ BOOL CHelperTesterDlg::OnInitDialog()
     int height = Config[_T("height")];
     int x = (::GetSystemMetrics(SM_CXSCREEN) - width)/2;
     int y = (::GetSystemMetrics(SM_CYSCREEN) - height)/2;
-    this->MoveWindow(x, y, width, height);
+    WINDOWPLACEMENT wp;
+    wp.showCmd = Config[_T("showcmd")];
+    wp.rcNormalPosition.left = x;
+    wp.rcNormalPosition.right = x + width;
+    wp.rcNormalPosition.top = y;
+    wp.rcNormalPosition.bottom = y + height;
+    this->SetWindowPlacement(&wp);
+
+    //this->MoveWindow(x, y, width, height);
 
     Logger.AddMessage(_T("MainDialog initialized."));
 	return TRUE;  // 포커스를 컨트롤에 설정하지 않으면 TRUE를 반환합니다.
@@ -150,4 +159,18 @@ void CHelperTesterDlg::UpdateLayout(void)
 	this->ScreenToClient(&rcLocal);
 
 //    Logger.AddMessage(_T("MainDialog Layout Updated."));
+}
+
+
+void CHelperTesterDlg::OnClose()
+{
+    // TODO: Add your message handler code here and/or call default
+    WINDOWPLACEMENT wp;
+    this->GetWindowPlacement(&wp);
+    CRect rc(wp.rcNormalPosition);
+    Config[_T("width")] = rc.Width();
+    Config[_T("height")] = rc.Height();
+    Config[_T("showcmd")] = wp.showCmd;
+
+    CDialog::OnClose();
 }

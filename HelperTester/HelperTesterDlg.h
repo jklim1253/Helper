@@ -38,4 +38,6 @@ private:
 	CEdit m_ctrlValueEdit;
 	CButton m_ctrlAddButton;
 	CListCtrl m_ctrlSearchList;
+public:
+    afx_msg void OnClose();
 };
